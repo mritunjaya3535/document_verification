@@ -1,69 +1,5 @@
 let uploadedFile = null;
 
-function showPreview() {
-    // Create the input only when needed
-    const fileInput = document.createElement("input");
-    fileInput.type = "file";
-    fileInput.accept = "image/*";
-    fileInput.style.display = "none";
-
-    // Append it temporarily to body
-    document.body.appendChild(fileInput);
-
-    // Add change listener
-    fileInput.addEventListener("change", function () {
-        const file = fileInput.files[0];
-        uploadedFile = file;
-        if (!file) return;
-
-        const reader = new FileReader();
-        reader.onload = function (e) {
-            const previewImage = document.querySelector(".preview-image img");
-            previewImage.src = e.target.result;
-            document.querySelector(".preview-section").classList.add("active");
-        };
-        reader.readAsDataURL(file);
-    });
-
-    // Trigger the input
-    fileInput.click();
-
-    // Clean up the input after use
-    fileInput.addEventListener("click", () => {
-        // Optional: remove after a short delay
-        setTimeout(() => {
-            fileInput.remove();
-        }, 1000);
-    });
-}
-
-async function submitFile() {
-    if (!uploadedFile) {
-        alert("Please upload an image first.");
-        return;
-    }
-
-    const formData = new FormData();
-    formData.append("idImage", uploadedFile);
-
-    // replace with your domain and command
-    await fetch("http://localhost:8000/api/upload/", {
-        method: "POST",
-        body: formData
-    })
-        .then(response => response.json())
-        .then(data => {
-            const queryString = new URLSearchParams(data).toString();
-            window.location.href = `success.html?${queryString}`;
-            console.log(data);
-        })
-        .catch(error => {
-            window.location.href = `failed.html`;
-            console.warn(error);
-        });
-}
-
-// Handle file input creation and preview display
 window.addEventListener("DOMContentLoaded", () => {
     // Create a hidden file input
     const fileInput = document.createElement("input");
@@ -72,15 +8,16 @@ window.addEventListener("DOMContentLoaded", () => {
     fileInput.style.display = "none";
     fileInput.id = "fileInput";
 
-    // Append it to the body
     document.body.appendChild(fileInput);
 
-    // File input trigger (call this on Upload button click)
+    // Trigger file selection on Upload button click
     window.triggerFileSelect = () => fileInput.click();
 
-    // File change handler
+    // Handle file selection and preview
     fileInput.addEventListener("change", function () {
         const file = this.files[0];
+        uploadedFile = file; // 🔑 Save to global variable
+
         if (!file) return;
 
         const previewContainer = document.querySelector(".preview-image");
@@ -111,5 +48,43 @@ window.addEventListener("DOMContentLoaded", () => {
 
         document.querySelector(".preview-section").classList.add("active");
     });
+
+    // ✅ Submit button event handler — placed inside DOMContentLoaded
+    const submitBtn = document.getElementById("submit-button");
+    if (submitBtn) {
+        submitBtn.addEventListener("click", () => {
+            submitFile(uploadedFile);
+        });
+    } else {
+        console.warn("Submit button not found in DOM.");
+    }
 });
 
+// 🔄 Upload the file to Django backend
+async function submitFile(file) {
+    if (!file) {
+        alert("Please upload an image or PDF first.");
+        return;
+    }
+
+    const formData = new FormData();
+    formData.append("idImage", file); // Ensure Django expects 'idImage'
+
+    try {
+        const response = await fetch("http://127.0.0.1:8000/api/upload/", {
+            method: "POST",
+            body: formData
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        const queryString = new URLSearchParams(data).toString();
+        window.location.href = `success.html?${queryString}`;
+    } catch (error) {
+        console.warn("Upload failed:", error);
+        window.location.href = `failed.html`;
+    }
+}

@@ -129,7 +129,7 @@
 
                         <!-- Webcam Controls -->
                         <div class="webcam-controls">
-                            <button class="control-button primary-button" onclick="showPreview()">
+                            <button class="control-button primary-button" onclick="triggerFileSelect()">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none"
                                     viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                     stroke-linejoin="round">
@@ -152,7 +152,7 @@
                                     <img src="data:image/jpeg;base64,{{base64Image}}" />
                                 </div>
                             </div>
-                            <button class="control-button primary-button" onclick="submitFile()">
+                            <button class="control-button primary-button" id="submit-button">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none"
                                     viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                     stroke-linejoin="round">
