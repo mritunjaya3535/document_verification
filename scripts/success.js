@@ -2,7 +2,7 @@
 const params = new URLSearchParams(window.location.search);
 
 // Extract values
-const reportContent = params;
+const reportContent = params.masked_text || "No report content available";
 
 // Sample dynamic data — replace with actual data from your app
 const userDetails = {

@@ -37,7 +37,7 @@ function showPreview() {
     });
 }
 
-function submitFile() {
+async function submitFile() {
     if (!uploadedFile) {
         alert("Please upload an image first.");
         return;
@@ -47,7 +47,7 @@ function submitFile() {
     formData.append("idImage", uploadedFile);
 
     // replace with your domain and command
-    fetch("https://localhost:8000/verify", {
+    await fetch("http://localhost:8000/api/upload/", {
         method: "POST",
         body: formData
     })
