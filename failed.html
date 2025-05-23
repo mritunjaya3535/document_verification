@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SecureID Verify - Verification Failed</title>
+  <link rel="stylesheet" href="styles/failed.css">
+</head>
+<body>
+
+  <main class="container" role="main" aria-labelledby="failureTitle">
+    <div class="logo" aria-label="SecureID Verify logo">SecureID Verify</div>
+
+    <div class="fail-icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" >
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </div>
+
+    <h1 id="failureTitle">Verification Unsuccessful</h1>
+    <p class="subtitle">We were unable to confirm the provided identification details. Please review the information below and try again.</p>
+
+    <!-- <section class="details" aria-label="Attempted user details">
+      <div><strong>Name:</strong> <span id="failUserName">John Doe</span></div>
+      <div><strong>Institution:</strong> <span id="failUserCompany">Greenfield University</span></div>
+      <div><strong>ID Type:</strong> <span id="failUserIdType">Student ID Card</span></div>
+      <div><strong>Attempt Time:</strong> <span id="failAttemptTime">May 23, 2025, 11:15 AM</span></div>
+    </section> -->
+
+    <div class="buttons">
+      <button class="btn-try-again" id="tryAgainBtn" aria-label="Try verification again">Try Again</button>
+      <button class="btn-contact-support" id="contactSupportBtn" aria-label="Contact support for help">Back to Home</button>
+    </div>
+  </main>
+  <script src="scripts/failed.js"></script>
+</body>
+</html>

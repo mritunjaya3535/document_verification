@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SecureID Verify - Verification Success</title>
+    <link rel="stylesheet" href="styles/success.css">
+</head>
+
+<body>
+    <main class="container" role="main" aria-labelledby="successTitle">
+        <div class="logo" aria-label="SecureID Verify logo">SecureID Verify</div>
+
+        <div class="checkmark" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+                <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+        </div>
+
+        <h1 id="successTitle">Verification Successful</h1>
+        <p class="subtitle">The personal identification details have been confirmed with complete accuracy.</p>
+
+        <!-- <section class="details" aria-label="Verified user details">
+            <div><strong>Name:</strong> <span id="userName">John Doe</span></div>
+            <div><strong>Institution:</strong> <span id="userCompany">Greenfield University</span></div>
+            <div><strong>ID Type:</strong> <span id="userIdType">Student ID Card</span></div>
+            <div><strong>Verification Time:</strong> <span id="verificationTime">May 23, 2025, 10:45 AM</span></div>
+        </section> -->
+
+        <div class="buttons">
+            <button class="btn-download" id="downloadReportBtn" aria-label="Download verification report">Download
+                Report</button>
+            <button class="btn-verify-again" id="verifyAgainBtn" aria-label="Verify another ID">Verify Another
+                ID</button>
+        </div>
+    </main>
+    <script src="scripts/success.js"></script>
+</body>
+
+</html>
