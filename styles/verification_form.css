@@ -76,26 +76,6 @@ header {
     color: var(--emerald);
 }
 
-nav ul {
-    display: flex;
-    list-style: none;
-}
-
-nav li {
-    margin-left: 2rem;
-}
-
-nav a {
-    text-decoration: none;
-    color: var(--gray);
-    font-weight: 500;
-    transition: color 0.2s;
-}
-
-nav a:hover {
-    color: var(--emerald);
-}
-
 .back-button {
     display: flex;
     align-items: center;
@@ -211,13 +191,13 @@ nav a:hover {
     text-align: center;
 }
 
-/* Webcam Container */
-.webcam-container {
+/* image positioning Container */
+.image-positioning-container {
     position: relative;
     margin-bottom: 1.5rem;
 }
 
-.webcam-view {
+.image-positioning-view {
     width: 100%;
     height: 400px;
     background-color: var(--gray-light);
@@ -230,7 +210,7 @@ nav a:hover {
     overflow: hidden;
 }
 
-.webcam-overlay {
+.image-positioning-overlay {
     position: absolute;
     top: 0;
     left: 0;
@@ -299,7 +279,7 @@ nav a:hover {
     border-right-width: 3px;
 }
 
-.webcam-instructions {
+.image-positioning-instructions {
     position: absolute;
     bottom: 1rem;
     left: 0;
@@ -313,7 +293,7 @@ nav a:hover {
     font-size: 0.875rem;
 }
 
-.webcam-controls {
+.image-positioning-controls {
     display: flex;
     gap: 1rem;
     margin-bottom: 1.5rem;
